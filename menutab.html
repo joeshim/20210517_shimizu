@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="tab_box">
+      <ul class="tab_list">
+        <li v-on:click="change('A')" v-bind:class="{'active': isActive === 'A'}">タブ1</li>
+        <li v-on:click="change('B')" v-bind:class="{'active': isActive === 'B'}">タブ2</li>
+        <li v-on:click="change('C')" v-bind:class="{'active': isActive === 'C'}">タブ3</li>
+      </ul>
+
+      <ul class="article">
+        <li v-if="isActive === 'A'">コンテンツ1</li>
+        <li v-else-if="isActive === 'B'">コンテンツ2</li>
+        <li v-else-if="isActive === 'C'">コンテンツ3</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isActive: null
+      },
+      methods: {
+        change: function (num) {
+          this.isActive = num
+        }
+      }
+    })
+  </script>
+
+  <style>
+    .tab_list {
+        display: flex;
+      }
+      .tab_list li {
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: .3s;
+        list-style: none;
+      }
+      .tab_list li:not(:first-child) {
+        border-left: none;
+      }
+      .tab_list li.active {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+      .article li {
+        width: 320px;
+        padding: 20px;
+        list-style: none;
+      }
+  </style>
+</body>
+
+</html>
