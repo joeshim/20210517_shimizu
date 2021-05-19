@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="search__area">
+      <input class="search__box" type="text" v-model="search">
+      <table>
+        <tr class="user__list" v-for="user in searchUsers" v-bind:key="user.id">
+          <td>{{ user.name }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        search: '',
+        users: [
+          {
+            id: 1,
+            name: '佐藤'
+          },
+          {
+            id: 2,
+            name: '山田'
+          },
+          {
+            id: 3,
+            name: '鈴木'
+          },
+          {
+            id: 4,
+            name: '田中'
+          },
+        ]
+      },
+      computed: {
+        searchUsers: function() {
+          return this.users.filter(user => {
+            return user.name.includes(this.search)　
+          })
+          }
+        },
+      });
+
+  </script>
+  <style>
+    .search__area {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  </style>
+</body>
+</html>
